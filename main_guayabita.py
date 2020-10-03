@@ -19,10 +19,12 @@ try:
                     saldo = 200000
                 return saldo   
         
+        #TITULO
         estilo = tkFont.Font(size=50)
         titulo = Label(ventana, text="🅖🅤🅐🅨🅐🅑🅘🅣🅐", font=estilo, relief=RAISED, borderwidth=3).place(x=200,y=25)
-        
-        
+        #TITULO
+
+        #INGRESO USUARIO 
         marco = Frame(ventana, relief=RAISED, borderwidth=3)
         marco.place(x=35, y=30)
         usuario_actual = Label(marco, text="Ingrese su nombre")#.grid(row=0)
@@ -30,6 +32,7 @@ try:
         name_user = Entry(marco)#.grid(row=1, column=1)
         name_user.pack()
 
+        #SALDO
         marco_saldo = Frame(ventana, relief = RAISED, borderwidth=3)
         marco_saldo.place(x=665,y=30)
         texto_saldo = Label(marco_saldo, text="Su saldo actual es de:")
@@ -37,6 +40,7 @@ try:
         estilo_saldo = tkFont.Font(size=15)
         texto_saldo_num = Label(marco_saldo, text=" ",font=estilo_saldo)
         texto_saldo_num.pack()
+        #SALDO
 
         def clicked():
             usuario = name_user.get()
@@ -47,8 +51,43 @@ try:
 
         btn_usuario = Button(marco, text="Agregar usuario", command=clicked)
         btn_usuario.pack()
-        
+        #INGRESO USUARIO
 
+        #DADO 1
+        marco_dado_1 = Frame(ventana,width=250,height=250, relief=RAISED, borderwidth=3)
+        marco_dado_1.place(x=35, y=200)
+        #dado_1_titulo = Label(marco_dado_1, text="Este es el dado 1")
+        #dado_1_titulo.pack(side = TOP)
+
+        def dado_1():
+            #Aquí tomo el resultado del metodo "Primer lanzamiento" de la clase de guayabita y retorno el valor del primer dado 
+            print("")
+
+        #dado_1_boton = Button(marco_dado_1, text="Lanza el primer dado", command=dado_1_titulo)
+        #dado_1_boton.pack(side = TOP)
+
+        #DADO 1
+
+        #ELECCION
+
+        marco_eleccion = Frame(ventana, relief=RAISED, borderwidth=3)
+        marco_eleccion.place(x=365, y=285)
+        btn_todo = Button(marco_eleccion, text="¡VOY POR TODO!")
+        btn_todo.pack()
+        btn_entrada = Button(marco_eleccion, text="Solo por la entrada")
+        btn_entrada.pack()
+
+        #ELECCION
+
+        #DADO 2
+
+        marco_dado_2 = Frame(ventana,width=250,height=250, relief=RAISED, borderwidth=3)
+        marco_dado_2.place(x=565, y=200)
+
+        #DADO 2
+
+
+        #INSTRUCCIONES
         marco_der = Frame(ventana, width = 430, height=720, cursor="dotbox")
         marco_der.pack(side=RIGHT)
         estilo2 = tkFont.Font(size=30)
@@ -67,7 +106,7 @@ try:
         sexto_entrada = Label(marco_der,text="- 𝙎𝙞𝙣𝙤, 𝙥𝙞𝙚𝙧𝙙𝙚𝙨 𝙡𝙤 𝙦𝙪𝙚 𝙫𝙖𝙡𝙚 𝙡𝙖 𝙚𝙣𝙩𝙧𝙖𝙙𝙖", font=estilo3).pack()
         final = Label(marco_der,text="\n𝙎𝙞 𝙚𝙣 𝙡𝙤𝙨 𝙥𝙧𝙞𝙢𝙚𝙧𝙤𝙨 𝙡𝙖𝙣𝙯𝙖𝙢𝙞𝙚𝙣𝙩𝙤𝙨 𝙨𝙖𝙘𝙖𝙨 𝙪𝙣𝙤 𝙤 𝙨𝙚𝙞𝙨, \n𝙥𝙞𝙚𝙧𝙙𝙚𝙨 𝙚𝙡 𝙥𝙧𝙚𝙘𝙞𝙤 𝙙𝙚 𝙡𝙖 𝙚𝙣𝙩𝙧𝙖𝙙𝙖", font=estilo3).pack()
         final2 = Label(marco_der,text="𝘾𝙖𝙙𝙖 𝙘𝙞𝙣𝙘𝙤 𝙧𝙤𝙣𝙙𝙖𝙨 𝙨𝙚 𝙧𝙚𝙞𝙣𝙞𝙘𝙞𝙖 𝙡𝙤 𝙦𝙪𝙚 𝙝𝙖𝙮 𝙚𝙣 𝙡𝙖 𝙢𝙚𝙨𝙖\n\n", font=estilo3).pack()
-
+        #INSTRUCCIONES
         
         
         #Esta clase re confirma que se ríe de las variables en array   
