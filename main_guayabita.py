@@ -1,7 +1,7 @@
 import tkinter as tk
 import tkinter.font as tkFont
 from tkinter import *
-import Juegos.Class_Guayabita
+import Juegos.Class_Guayabita as Guayaba
 
 try:
     def Juego():
@@ -56,15 +56,17 @@ try:
         #DADO 1
         marco_dado_1 = Frame(ventana,width=250,height=250, relief=RAISED, borderwidth=3)
         marco_dado_1.place(x=35, y=200)
-        #dado_1_titulo = Label(marco_dado_1, text="Este es el dado 1")
-        #dado_1_titulo.pack(side = TOP)
+        dado_1_titulo = Label(marco_dado_1, text="Este es el dado 1")
+        dado_1_titulo.pack()
+        dado_1_ans = Label(marco_dado_1, text="")
+        dado_1_ans.pack()
 
         def dado_1():
-            #Aquí tomo el resultado del metodo "Primer lanzamiento" de la clase de guayabita y retorno el valor del primer dado 
-            print("")
+            ans = Guayaba.Guayabita.PrimerLanzamiento()         
+            dado_1_ans["text"] = ans
 
-        #dado_1_boton = Button(marco_dado_1, text="Lanza el primer dado", command=dado_1_titulo)
-        #dado_1_boton.pack(side = TOP)
+        dado_1_boton = Button(marco_dado_1, text="Lanza el primer dado", command=dado_1)
+        dado_1_boton.pack()
 
         #DADO 1
 
@@ -72,6 +74,10 @@ try:
 
         marco_eleccion = Frame(ventana, relief=RAISED, borderwidth=3)
         marco_eleccion.place(x=365, y=285)
+
+        #def elegir():
+            #eleccion = Guayaba.Guayabita.
+
         btn_todo = Button(marco_eleccion, text="¡VOY POR TODO!")
         btn_todo.pack()
         btn_entrada = Button(marco_eleccion, text="Solo por la entrada")
@@ -83,7 +89,17 @@ try:
 
         marco_dado_2 = Frame(ventana,width=250,height=250, relief=RAISED, borderwidth=3)
         marco_dado_2.place(x=565, y=200)
+        dado_2_titulo = Label(marco_dado_2, text="Este es el dado 2")
+        dado_2_titulo.pack()
+        dado_2_ans = Label(marco_dado_2, text="")
+        dado_2_ans.pack()
 
+        def dado_2():
+            ans_2 = Guayaba.Guayabita.SegundoLanzamiento()         
+            dado_2_ans["text"] = ans_2
+
+        dado_2_boton = Button(marco_dado_2, text="Lanza el segundo dado", command=dado_2)
+        dado_2_boton.pack()
         #DADO 2
 
 

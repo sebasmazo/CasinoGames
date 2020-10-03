@@ -1,30 +1,93 @@
-#CORNEJO
-#Hola lic mazo, cuando leas esto seguramente tengas que organizar mi codigo tkm
-
-#Esta clase se rie de las variables con array de mazo
-
 import numpy.random as rnd
 class Guayabita:
     #Metodo para el lanzamiento del primer dado 
-    def PrimerLanzamiento(self):
+    @staticmethod
+    def PrimerLanzamiento():
+
         dado_1 = rnd.rand()                                                         #Genera un num aleatorio del 0 al 1
-        self.valor_dado_1 = 0                                                       #Variable que almacena la cara en la que cae el dado 1
         #Condicionales para asignar el valor del dado 1
         if(dado_1 <= 1/6):
-            self.valor_dado_1 = 1
+            print("dado 1 = 1")
+            return 1
         elif(dado_1 <= 2/6):
-            self.valor_dado_1 = 2
+            print("dado 1 = 2")
+            return 2
         elif(dado_1 <= 3/6):
-            self.valor_dado_1 = 3
+            print("dado 1 = 3")
+            return 3
         elif(dado_1 <= 4/6):
-            self.valor_dado_1 = 4
+            print("dado 1 = 4")
+            return 4
         elif(dado_1 <= 5/6):
-            self.valor_dado_1 = 5
+            print("dado 1 = 5")
+            return 5
         else:
-            self.valor_dado_1 = 6
-        print("El resultado del dado 1 fue {}".format(self.valor_dado_1))
+            print("dado 1 = 6")
+            return 6
+
+    @staticmethod
+    def Intermedio():
+        v1 = Guayabita.PrimerLanzameinto()
+        if(v1==1 or v1==6):
+            cuerda = "Perdiste lo de la entrada"
+            return cuerda
+
+    @staticmethod
+    def SegundoLanzamiento():
+        dado_2 = rnd.rand()
+
+        if(dado_2 <= 1/6):
+            print("dado 2 = 1")
+            return 1
+        elif(dado_2 <= 2/6):
+            print("dado 2 = 2")
+            return 2
+        elif(dado_2 <= 3/6):
+            print("dado 2 = 3")
+            return 3
+        elif(dado_2 <= 4/6):
+            print("dado 2 = 4")
+            return 4
+        elif(dado_2 <= 5/6):
+            print("dado 2 = 5")
+            return 5
+        else:
+            print("dado 2 = 6")
+            return 6
+
+        
+
+    
+    #SegundoLanzamiento()
+
+    
+    #print(PrimerLanzamiento())
+
+        
+       # dado_1 = rnd.rand()                                                         #Genera un num aleatorio del 0 al 1
+        #self.valor_dado_1 = 0                                                       #Variable que almacena la cara en la que cae el dado 1
+        ##Condicionales para asignar el valor del dado 1
+        #if(dado_1 <= 1/6):
+        #    self.valor_dado_1 = 1
+        #elif(dado_1 <= 2/6):
+        #    self.valor_dado_1 = 2
+        #elif(dado_1 <= 3/6):
+        #    self.valor_dado_1 = 3
+        #elif(dado_1 <= 4/6):
+        #    self.valor_dado_1 = 4
+        #elif(dado_1 <= 5/6):
+            #self.valor_dado_1 = 5
+        #else:
+            #self.valor_dado_1 = 6
+        #print("El resultado del dado 1 fue {}".format(self.valor_dado_1))
     #Metodo para el lanzamiento del dado 2
-    def SegundoLanzamiento(self):  #bool
+        
+    """
+    def SegundoLanzamiento():  #bool
+
+        print(PrimerLanzamiento())
+
+        
         #Si el valor del dado 1 es igual a 1 o 6, no se ejecuta el resto del codigo porque ya no se lanza el 2do dado
         if(self.valor_dado_1 == 1 or self.valor_dado_1 == 6):
             print("Perdio el valor de la entrada")
@@ -74,7 +137,8 @@ class Guayabita:
                     #De otro modo, debe poner en la mesa el valor de la entrada (pierde)
                     else:
                         print("Perdiste el valor de la entrada")
-
+        
+    """
                         
 #Esta clase re confirma que se ríe e las variables en array     
 #g = Guayabita()
