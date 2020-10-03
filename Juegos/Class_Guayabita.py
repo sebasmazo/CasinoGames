@@ -24,7 +24,7 @@ class Guayabita:
             self.valor_dado_1 = 6
         print("El resultado del dado 1 fue {}".format(self.valor_dado_1))
     #Metodo para el lanzamiento del dado 2
-    def SegundoLanzamiento(self, xtodoxvalor):  #bool
+    def SegundoLanzamiento(self):  #bool
         #Si el valor del dado 1 es igual a 1 o 6, no se ejecuta el resto del codigo porque ya no se lanza el 2do dado
         if(self.valor_dado_1 == 1 or self.valor_dado_1 == 6):
             print("Perdio el valor de la entrada")
@@ -74,6 +74,8 @@ class Guayabita:
                     #De otro modo, debe poner en la mesa el valor de la entrada (pierde)
                     else:
                         print("Perdiste el valor de la entrada")
+
+                        
 #Esta clase re confirma que se ríe e las variables en array     
 #g = Guayabita()
 #g.PrimerLanzamiento()
