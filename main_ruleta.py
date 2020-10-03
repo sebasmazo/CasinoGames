@@ -4,8 +4,8 @@ import Juegos.Class_Ruleta as Ruleta
 try:
     def Juego():
         try:
-            puede = [True]
-            resultados = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+            puede = [False]
+            resultados = [1]
             
             window = Tk()
             window.title("CASINOFRESCO")
@@ -45,15 +45,17 @@ try:
                 return 200000
 
             def clicked():
-                puede[0] = True
                 res = name_user.get()
                 usuario_actual.configure(text="Bienvenido, " + res)
                 saldo = GetSaldoUsuario(res)
                 saldo_actual.configure(text="Saldo actual de " + res + ": {}" .format(saldo))
+                if saldo >= 500:
+                    puede[0] = True
+                    
                 
-                
+            
             #///////
-            saldo2 = 10000000000
+            
             #Inicia script de ruleta
             def InitRuleta():
                     if(puede[0] == True):
@@ -68,7 +70,8 @@ try:
                         if(saldo2 < 500):
                             puede[0] = False
                             estado_ruleta.configure(text = "Desactivada")
-                            
+                    else:
+                        estado_ruleta.configure(text = "Dinero insuficiente")
                         
             #/////////////
             
