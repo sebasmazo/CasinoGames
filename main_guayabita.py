@@ -53,6 +53,10 @@ try:
         btn_usuario.pack()
         #INGRESO USUARIO
 
+        #Resultados
+        marco_resultados = 
+        #Resultados
+
         #DADO 1
         marco_dado_1 = Frame(ventana,width=250,height=250, relief=RAISED, borderwidth=3)
         marco_dado_1.place(x=35, y=200)
@@ -67,41 +71,53 @@ try:
 
         dado_1_boton = Button(marco_dado_1, text="Lanza el primer dado", command=dado_1)
         dado_1_boton.pack()
-
         #DADO 1
 
         #ELECCION
-
         marco_eleccion = Frame(ventana, relief=RAISED, borderwidth=3)
-        marco_eleccion.place(x=365, y=285)
+        marco_eleccion.place(x=300, y=285)
 
-        #def elegir():
-            #eleccion = Guayaba.Guayabita.
+        elecciones = ['Voy por todo', 'Solo voy por la entrada']
+        variable = StringVar(marco_eleccion)
+        variable.set('Voy por todo')
 
-        btn_todo = Button(marco_eleccion, text="¡VOY POR TODO!")
-        btn_todo.pack()
-        btn_entrada = Button(marco_eleccion, text="Solo por la entrada")
-        btn_entrada.pack()
+        tit_eleccion = Label(marco_eleccion, text="Elija una opción antes de tirar el segundo dado")
+        tit_eleccion.pack()
 
+        panel_eleccion = OptionMenu(marco_eleccion, variable, *elecciones)
+        panel_eleccion.pack()
+
+        lab_prueba = Label(marco_eleccion, text="")         #Esto irá en marco resultados
+        lab_prueba.pack()
         #ELECCION
 
         #DADO 2
-
         marco_dado_2 = Frame(ventana,width=250,height=250, relief=RAISED, borderwidth=3)
-        marco_dado_2.place(x=565, y=200)
+        marco_dado_2.place(x=665, y=200)
         dado_2_titulo = Label(marco_dado_2, text="Este es el dado 2")
         dado_2_titulo.pack()
         dado_2_ans = Label(marco_dado_2, text="")
         dado_2_ans.pack()
 
         def dado_2():
-            ans_2 = Guayaba.Guayabita.SegundoLanzamiento()         
-            dado_2_ans["text"] = ans_2
 
+            val_1 = dado_1_ans["text"]
+            
+            if(val_1 == ""):
+                lab_prueba["text"] = "Primero tire el dado 1"
+            else:
+                val_eleccion = variable.get()
+                if(val_eleccion == elecciones[0]):
+                    lab_prueba["text"] = "Vas por todo"
+                elif(val_eleccion == elecciones[1]):
+                    lab_prueba["text"] = "Vas solo por la entrada"
+            
+                ans_2 = Guayaba.Guayabita.SegundoLanzamiento()         
+                dado_2_ans["text"] = ans_2
+            
         dado_2_boton = Button(marco_dado_2, text="Lanza el segundo dado", command=dado_2)
         dado_2_boton.pack()
         #DADO 2
-
 
         #INSTRUCCIONES
         marco_der = Frame(ventana, width = 430, height=720, cursor="dotbox")

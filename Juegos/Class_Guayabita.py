@@ -26,13 +26,6 @@ class Guayabita:
             return 6
 
     @staticmethod
-    def Intermedio():
-        v1 = Guayabita.PrimerLanzameinto()
-        if(v1==1 or v1==6):
-            cuerda = "Perdiste lo de la entrada"
-            return cuerda
-
-    @staticmethod
     def SegundoLanzamiento():
         dado_2 = rnd.rand()
 
