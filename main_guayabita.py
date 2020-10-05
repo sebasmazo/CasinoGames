@@ -19,6 +19,12 @@ try:
                 if(y==1):
                     saldo = 200000
                 return saldo   
+
+        def GetValorMesa(x):
+            if(x==1):
+                valor_mesa = 10000
+            return valor_mesa
+
         
         #TITULO
         estilo = tkFont.Font(size=50)
@@ -48,24 +54,31 @@ try:
             usuario_actual.configure(text="Bienvenid@, " + usuario)
             saldito = GetSaldoUsuario(1)  
             texto_saldo_num["text"] = saldito
+            if(btn_usuario['state'] == tk.NORMAL):
+                btn_usuario['state'] = tk.DISABLED
+                dado_1_boton['state'] = tk.NORMAL
+            else:
+                btn_usuario['state'] = tk.NORMAL
+                
+                dado_1_boton['state'] = tk.DISABLED
+
+            
             
 
         btn_usuario = Button(marco, text="Agregar usuario", command=clicked)
         btn_usuario.pack()
         #INGRESO USUARIO
         
-        #MESA
+        #MESA              
         marco_mesa = Frame(ventana,relief=RAISED, borderwidth=3)
-        marco_mesa.place(x=320,y=575)
-        estilo_mesa = tkFont.Font(size=20)
-        txt_mesa = Label(marco_mesa, text="En la mesa hay:",font=estilo_mesa)
+        marco_mesa.place(x=200,y=580)
+        estilo_mesa = tkFont.Font(size=40)
+        huecoxd = Label(marco_mesa,text="\t\t\t\t\t\t",font="estilo_mesa")
+        huecoxd.pack()
+        txt_mesa = Label(marco_mesa, text="Resultados",font=estilo_mesa)
         txt_mesa.pack()
-        valor_inicial_mesa = 10000
-        valor_entrada = 10000
-        txt_saldo_mesa = Label(marco_mesa,text=valor_inicial_mesa, font=estilo_mesa)
-        txt_saldo_mesa.pack()
         
-  
+        valor_entrada = 10000
         #MESA
 
         #IMG DADO 1
@@ -92,39 +105,61 @@ try:
 
         var_no_spam = [True, True]
 
-
         def dado_1():
-            lbl_saldote = texto_saldo_num["text"]
-            saldote = GetSaldoUsuario(1)
-              
-            if(lbl_saldote == ""):
-                dado_1_ans["text"] = "Ingresa tu usuario"
-            elif(saldote<10000):
-                dado_1_ans["text"] = "Saldo insuficiente"
+            saldote = texto_saldo_num["text"]
+            #val_mesa = GetValorMesa(1)
             
-            elif(var_no_spam[0] == True):
-                txt_saldo_mesa["text"] = valor_entrada + valor_inicial_mesa
-                ans = Guayaba.Guayabita.PrimerLanzamiento()  
-                       
+            if(saldote >= 10000):
+                saldote = saldote - valor_entrada
+                texto_saldo_num["text"] = saldote
+
+                #val_mesa = val_mesa + valor_entrada
+                #txt_saldo_mesa["text"] = val_mesa 
+
+                ans = Guayaba.Guayabita.PrimerLanzamiento()
                 dado_1_ans["text"] = ans
+
                 if(ans == 1):
                     img_1["image"] = img_dado_1
+                    saldote = saldote - valor_entrada
+                    texto_saldo_num["text"] = saldote
+                    txt_mesa["text"] = "Perdiste 10000"
+                    #val_mesa = val_mesa + valor_entrada
+                    #txt_saldo_mesa["text"] = val_mesa
+
                 elif(ans == 2):
                     img_1["image"] = img_dado_2
+                    var_no_spam[0] = False
+                    dado_1_boton['state'] = tk.DISABLED
+                    dado_2_boton['state'] = tk.NORMAL
+                            
                 elif(ans == 3):
                     img_1["image"] = img_dado_3
+                    var_no_spam[0] = False
+                    dado_1_boton['state'] = tk.DISABLED
+                    dado_2_boton['state'] = tk.NORMAL               
+                    
                 elif(ans == 4):
                     img_1["image"] = img_dado_4
+                    var_no_spam[0] = False
+                    dado_1_boton['state'] = tk.DISABLED     
+                    dado_2_boton['state'] = tk.NORMAL            
+                         
                 elif(ans == 5):
                     img_1["image"] = img_dado_5
+                    var_no_spam[0] = False
+                    dado_1_boton['state'] = tk.DISABLED
+                    dado_2_boton['state'] = tk.NORMAL
+                                
                 elif(ans == 6):
                     img_1["image"] = img_dado_6
-                var_no_spam[0] = False
-            
-            elif(var_no_spam[0] == False):
-                dado_1_ans["text"] == "Tire el otro dado"
+                    saldote = saldote - valor_entrada
+                    texto_saldo_num["text"] = saldote
+                    txt_mesa["text"] = "Perdiste 10000"
+                    #val_mesa = val_mesa + valor_entrada
+                    #txt_saldo_mesa["text"] = val_mesa
 
-        dado_1_boton = Button(marco_dado_1, text="Lanza el primer dado", command=dado_1)
+        dado_1_boton = Button(marco_dado_1, text="Lanza el primer dado", state=tk.DISABLED, command=dado_1)
         dado_1_boton.pack()
         #DADO 1
 
@@ -132,9 +167,9 @@ try:
         marco_eleccion = Frame(ventana, relief=RAISED, borderwidth=3)
         marco_eleccion.place(x=300, y=200)
 
-        elecciones = ['Voy por todo', 'Solo voy por la entrada']
+        elecciones = ['ALTO', 'MEDIO', 'BAJO']
         variable = StringVar(marco_eleccion)
-        variable.set('Voy por todo')
+        variable.set('ALTO')
 
         tit_eleccion = Label(marco_eleccion, text="Elija una opción antes de tirar el segundo dado")
         tit_eleccion.pack()
@@ -142,7 +177,7 @@ try:
         panel_eleccion = OptionMenu(marco_eleccion, variable, *elecciones)
         panel_eleccion.pack()
 
-        lab_prueba = Label(marco_eleccion, text="")         #Esto irá en marco resultados
+        lab_prueba = Label(marco_eleccion, text="")         
         lab_prueba.pack()
         #ELECCION
 
@@ -162,15 +197,22 @@ try:
         dado_2_ans.pack()
 
         def dado_2():
-            val_1 = dado_1_ans["text"]       
-            if(val_1 == "" or val_1 == "Ingresa tu usuario" or val_1 == "Saldo insuficiente"):
-                dado_2_ans["text"] = "Primero tire el dado 1"
-            elif((int(val_1) > 1 or int(val_1) < 6) and var_no_spam[1] == True):
-                val_eleccion = variable.get()
-                if(val_eleccion == elecciones[0]):
-                    lab_prueba["text"] = "Fuiste por todo"
-                    ans_2 = Guayaba.Guayabita.SegundoLanzamiento()         
-                    dado_2_ans["text"] = ans_2
+            dado_2_boton['state'] = tk.DISABLED
+            saldito = texto_saldo_num["text"]
+            v_dado_1 = dado_1_ans["text"]
+
+            ans_2 = Guayaba.Guayabita.SegundoLanzamiento()
+            dado_2_ans["text"] = ans_2
+
+            val_eleccion = variable.get()
+
+            if(val_eleccion == elecciones[0]):
+
+                if(ans_2 > v_dado_1):
+                    saldito = saldito + 50000
+                    texto_saldo_num["text"] = saldito
+                    txt_mesa["text"] = "GANASTE 40000"
+
                     if(ans_2 == 1):
                         img_2["image"] = img_dado_1
                     elif(ans_2 == 2):
@@ -183,13 +225,12 @@ try:
                         img_2["image"] = img_dado_5
                     elif(ans_2 == 6):
                         img_2["image"] = img_dado_6
-                    var_no_spam[1] == False
-                    dado_1_ans["text"] = ""
-                    
-                elif(val_eleccion == elecciones[1]):
-                    lab_prueba["text"] = "Fuiste solo por la entrada"
-                    ans_2 = Guayaba.Guayabita.SegundoLanzamiento()         
-                    dado_2_ans["text"] = ans_2
+
+                elif(ans_2 <= v_dado_1):
+                    saldito = saldito - 80000
+                    texto_saldo_num["text"] = saldito
+                    txt_mesa["text"] = "PERDISTE 80000"
+
                     if(ans_2 == 1):
                         img_2["image"] = img_dado_1
                     elif(ans_2 == 2):
@@ -202,34 +243,105 @@ try:
                         img_2["image"] = img_dado_5
                     elif(ans_2 == 6):
                         img_2["image"] = img_dado_6
-                    var_no_spam[1] == False
-                    dado_1_ans["text"] = ""
-                    
-            else:
-                dado_2_ans["text"] = "Perdiste lo de la entrada"
-      
-        dado_2_boton = Button(marco_dado_2, text="Lanza el segundo dado", command=dado_2)
+
+            elif(val_eleccion == elecciones[1]):
+
+                if(ans_2 > v_dado_1):
+                    saldito = saldito + 30000
+                    texto_saldo_num["text"] = saldito
+                    txt_mesa["text"] = "GANASTE 20000"
+
+                    if(ans_2 == 1):
+                        img_2["image"] = img_dado_1
+                    elif(ans_2 == 2):
+                        img_2["image"] = img_dado_2
+                    elif(ans_2 == 3):
+                        img_2["image"] = img_dado_3
+                    elif(ans_2 == 4):
+                        img_2["image"] = img_dado_4
+                    elif(ans_2 == 5):
+                        img_2["image"] = img_dado_5
+                    elif(ans_2 == 6):
+                        img_2["image"] = img_dado_6
+
+                elif(ans_2 <= v_dado_1):
+
+                    saldito = saldito - 40000
+                    texto_saldo_num["text"] = saldito
+                    txt_mesa["text"] = "PERDISTE 40000"
+
+                    if(ans_2 == 1):
+                        img_2["image"] = img_dado_1
+                    elif(ans_2 == 2):
+                        img_2["image"] = img_dado_2
+                    elif(ans_2 == 3):
+                        img_2["image"] = img_dado_3
+                    elif(ans_2 == 4):
+                        img_2["image"] = img_dado_4
+                    elif(ans_2 == 5):
+                        img_2["image"] = img_dado_5
+                    elif(ans_2 == 6):
+                        img_2["image"] = img_dado_6
+
+            elif(val_eleccion == elecciones[2]):
+
+                if(ans_2 > v_dado_1):
+                    saldito = saldito + 20000
+                    texto_saldo_num["text"] = saldito
+                    txt_mesa["text"] = "GANASTE 10000"
+
+                    if(ans_2 == 1):
+                        img_2["image"] = img_dado_1
+                    elif(ans_2 == 2):
+                        img_2["image"] = img_dado_2
+                    elif(ans_2 == 3):
+                        img_2["image"] = img_dado_3
+                    elif(ans_2 == 4):
+                        img_2["image"] = img_dado_4
+                    elif(ans_2 == 5):
+                        img_2["image"] = img_dado_5
+                    elif(ans_2 == 6):
+                        img_2["image"] = img_dado_6
+
+                elif(ans_2 <= v_dado_1):
+
+                    saldito = saldito - 20000
+                    texto_saldo_num["text"] = saldito
+                    txt_mesa["text"] = "PERDISTE 20000"
+
+                    if(ans_2 == 1):
+                        img_2["image"] = img_dado_1
+                    elif(ans_2 == 2):
+                        img_2["image"] = img_dado_2
+                    elif(ans_2 == 3):
+                        img_2["image"] = img_dado_3
+                    elif(ans_2 == 4):
+                        img_2["image"] = img_dado_4
+                    elif(ans_2 == 5):
+                        img_2["image"] = img_dado_5
+                    elif(ans_2 == 6):
+                        img_2["image"] = img_dado_6
+            
+        dado_2_boton = Button(marco_dado_2, text="Lanza el segundo dado",state=tk.DISABLED, command=dado_2)
         dado_2_boton.pack()
         #DADO 2
 
-        #LIMPIAR DADOS
-        def limpiar_dados():
-            valor_d2 = int(dado_2_ans["text"])
-            if(valor_d2 >= 1 or valor_d2 <= 6):
-                print(var_no_spam[0])
+        #JUGAR DE NUEVO
+        def limpiar():      #Dejemos ese boton siempre activo pero que solo funcione cuando haya contenido 
+            if(txt_mesa != "RESULTADOS"):
                 img_1["image"] = img_dado_0
                 img_2["image"] = img_dado_0
+                dado_1_ans["text"] = ""
                 dado_2_ans["text"] = ""
-                var_no_spam[0] == True
-                print(var_no_spam[0])
+                dado_1_boton['state'] = tk.NORMAL
+            else:
+                txt_mesa["text"] = "Termine la ronda"
 
+        estilo_btn_mesa = tkFont.Font(size=15)
+        btn_limpiar = Button(marco_mesa, text="Volver a jugar", font=estilo_btn_mesa, command=limpiar)
+        btn_limpiar.pack()
+        #JUGAR DE NUEVO
         
-        boton_limpiar = Button(marco_mesa, text="LIMPIAR DADOS", command=limpiar_dados)
-        boton_limpiar.pack()
-
-
-        #LIMPIAR DADOS
-
         #INSTRUCCIONES
         marco_der = Frame(ventana, width = 430, height=720, cursor="dotbox")
         marco_der.pack(side=RIGHT)
@@ -251,7 +363,7 @@ try:
         final2 = Label(marco_der,text="𝘾𝙖𝙙𝙖 𝙘𝙞𝙣𝙘𝙤 𝙧𝙤𝙣𝙙𝙖𝙨 𝙨𝙚 𝙧𝙚𝙞𝙣𝙞𝙘𝙞𝙖 𝙡𝙤 𝙦𝙪𝙚 𝙝𝙖𝙮 𝙚𝙣 𝙡𝙖 𝙢𝙚𝙨𝙖\n\n", font=estilo3).pack()
         #INSTRUCCIONES
              
-        #Esta clase re confirma que se ríe de las variables en array   
+   
  
         ventana.mainloop()
     if __name__ == "__main__":
