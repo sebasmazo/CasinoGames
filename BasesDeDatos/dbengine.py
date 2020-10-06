@@ -5,6 +5,7 @@ moneyrec = []
 charges = []
 chargemov = []
 
+#Funcion usada para adicionar un nuevo valor al historial de dinero
 def addRecord(newmoney):
     try:
         mov.append(len(mov)+1);
@@ -13,6 +14,7 @@ def addRecord(newmoney):
     except:
         print("Error addRecord");
 
+#Funcion usada para adicionar un valor de carga
 def charge(newmoney):
     try:
         addRecord(newmoney);
@@ -22,6 +24,7 @@ def charge(newmoney):
     except:
         print("Error Charge");
 
+#Funcion usada para mostrar el histograma, unicamente con fines de testing
 def showPlot():
     plt.bar(mov,moneyrec,align='center', width=.2);
     plt.xlabel('Movimiento');
@@ -29,6 +32,7 @@ def showPlot():
     plt.bar(chargemov,charges,align='center', width=.2);
     plt.show();
 
+#Funcion para guardar los cambios, debe realizarse siempre luego de hacerle cambios a la base de datos
 def save():
     try:
         file = open("moneyrec.txt", "w");
@@ -44,6 +48,7 @@ def save():
     except:
         print("Error Save");
 
+#Funcion para cargar los valores guardados en los archivos a los arrays en la base de datos
 def load():
     try:
         file = open("moneyrec.txt", "r");
@@ -76,6 +81,7 @@ def load():
     except:
         print("Error Load");
 
+#Funcion para eliminar todo el contenido de la base de datos
 def clear():
     try:
         moneyrec.clear();
@@ -86,8 +92,9 @@ def clear():
     except:
         print("Error Clear");
 
-def balance():
+#Funcion que retorna el ultimo valor de la base de datos (Saldo Actual)
+def actualmoney():
     try:
         return moneyrec[len(moneyrec) -1];
     except:
-        print("Error balance()");
+        print("Error actualmoney()");

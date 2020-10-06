@@ -1,5 +1,6 @@
 from tkinter import *
 import Juegos.Class_Ruleta as Ruleta
+import BasesDeDatos.dbengine as db
 
 try:
     def Juego():
