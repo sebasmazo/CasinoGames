@@ -1,13 +1,14 @@
+import tkinter as tK
 from tkinter import *
 import Juegos.Class_Ruleta as Ruleta
 import BasesDeDatos.dbengine as db
+
 
 try:
     def Juego():
         try:
             puede = [False]
             resultados = [1]
-            
             window = Tk()
             window.title("CASINOFRESCO")
             window.geometry("1280x720")
@@ -24,7 +25,6 @@ try:
             
             marca = Label(window, image = imagen_marca).place(x=540,y=600)
             #////
-
             #Usuario
             usuario_actual = Label(window, text=" ")
             usuario_actual.pack()
@@ -40,12 +40,16 @@ try:
             estado_ruleta.pack()
             resultado_ruleta = Label(window, text = " ")
             resultado_ruleta.pack()
-
+            #Grafica
+            mostrar_grafica = Button(window, text = "Mostrar histograma", command=lambda: Grafica())
+            mostrar_grafica.pack()
+            def Grafica():
+                db.showPlot()
             def GetSaldoUsuario(NombreUsuario):
-                #EN ESTA FUNCION VA LA COMUNICACION CON LA BASE DE DATOS PARA CONSEGUIR EL SALDO ACTUAL DEL USUARIO, ESTA FUNCION DEBE RETORNAR EL SALDO ACTUAL
-                return 200000
+                return int(db.actualmoney())
 
             def clicked():
+                btn_usuario['state'] = tK.DISABLED
                 res = name_user.get()
                 usuario_actual.configure(text="Bienvenido, " + res)
                 saldo = GetSaldoUsuario(res)
@@ -65,12 +69,16 @@ try:
                         ruleta = Ruleta.Ruleta(saldo1, res1)
                         estado_ruleta.configure(text = ruleta.EstadoRuleta())
                         resultados[0] = ruleta.JugarRuleta()
+                        db.addRecord(ruleta.saldo_actual)
+                        db.load()
+                        db.save()
                         resultado_ruleta.configure(text = "Resultado: {} ".format(resultados[0]))
                         saldo2 = ruleta.saldo_actual
                         saldo_actual.configure(text = "Saldo restante: {}".format(saldo2))
                         if(saldo2 < 500):
                             puede[0] = False
                             estado_ruleta.configure(text = "Desactivada")
+                            btn_jugar['state'] = tK.DISABLED
                     else:
                         estado_ruleta.configure(text = "Dinero insuficiente")
                         
@@ -100,5 +108,6 @@ except ConnectionRefusedError:
 except Exception:
     print("Dinero insuficiente")
 finally:
+    db.save()
     print("Fin del programa")
 
