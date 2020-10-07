@@ -18,9 +18,9 @@ try:
         def GetSaldoUsuario(y):
                 #EN ESTA FUNCION VA LA COMUNICACION CON LA BASE DE DATOS PARA CONSEGUIR EL SALDO ACTUAL DEL USUARIO, ESTA FUNCION DEBE RETORNAR EL SALDO ACTUAL
                 if(y==1):
-                    saldo = 200000
-                # return saldo   
-                return int(db.actualmoney()) #Retorna el saldo actual
+                 saldo = 200000
+                 return saldo   
+                 #return int(db.actualmoney()) #Retorna el saldo actual
 
         def GetValorMesa(x):
             if(x==1):
