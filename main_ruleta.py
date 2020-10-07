@@ -45,6 +45,7 @@ try:
             mostrar_grafica.pack()
             def Grafica():
                 db.showPlot()
+                
             def GetSaldoUsuario(NombreUsuario):
                 return int(db.actualmoney())
 
