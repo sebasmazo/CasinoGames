@@ -20,7 +20,7 @@ try:
                 if(y==1):
                  saldo = 200000
                  return saldo   
-                 #return int(db.actualmoney()) #Retorna el saldo actual
+                 #return int(db.actualmoney()) #Retorna el saldo actual 
 
         def GetValorMesa(x):
             if(x==1):
