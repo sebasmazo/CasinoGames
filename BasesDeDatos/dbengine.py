@@ -98,3 +98,6 @@ def actualmoney():
         return moneyrec[len(moneyrec) -1];
     except:
         print("Error actualmoney()");
+    
+    finally:
+        db.save()

@@ -4,6 +4,7 @@ from tkinter import *
 import Juegos.Class_Guayabita as Guayaba
 import BasesDeDatos.dbengine as db
 
+
 try:
     def Juego():
 
@@ -16,12 +17,11 @@ try:
         
 
         def GetSaldoUsuario(y):
-                #EN ESTA FUNCION VA LA COMUNICACION CON LA BASE DE DATOS PARA CONSEGUIR EL SALDO ACTUAL DEL USUARIO, ESTA FUNCION DEBE RETORNAR EL SALDO ACTUAL
-                if(y==1):
-                 saldo = 200000
-                 return saldo   
-                 #return int(db.actualmoney()) #Retorna el saldo actual 
-
+                #EN ESTA FUNCION VA LA COMUNICACION CON LA BASE DE DATOS PARA CONSEGUIR EL SALDO ACTUAL DEL USUARIO, ESTA FUNCION DEBE RETORNAR EL SALDO ACTUAL    
+                if(y==1):                                
+                   
+                   return db.actualmoney()
+            
         def GetValorMesa(x):
             if(x==1):
                 valor_mesa = 10000
@@ -108,16 +108,16 @@ try:
         var_no_spam = [True, True]
 
         def dado_1():
-
             saldote = texto_saldo_num["text"]
             #val_mesa = GetValorMesa(1)
             
             if(saldote >= 10000):
-                saldote - valor_entrada
-                texto_saldote = saldo_num["text"] = saldote
-                db.actualmoney(saldote) #Saldo actual que sera saldote
-                db.load() #Lo carga
-                db.save() #Lo guarda
+                saldote = saldote - valor_entrada
+                db.addRecord(saldote)
+                db.load()
+                db.save()
+                texto_saldo_num["text"] = saldote
+                  
 
                 #val_mesa = val_mesa + valor_entrada
                 #txt_saldo_mesa["text"] = val_mesa 
@@ -128,6 +128,9 @@ try:
                 if(ans == 1):
                     img_1["image"] = img_dado_1
                     saldote = saldote - valor_entrada
+                    db.addRecord(saldote)
+                    db.load()
+                    db.save()
                     texto_saldo_num["text"] = saldote
                     txt_mesa["text"] = "Perdiste 10000"
                     #val_mesa = val_mesa + valor_entrada
@@ -160,6 +163,9 @@ try:
                 elif(ans == 6):
                     img_1["image"] = img_dado_6
                     saldote = saldote - valor_entrada
+                    db.addRecord(saldote)
+                    db.load()
+                    db.save()
                     texto_saldo_num["text"] = saldote
                     txt_mesa["text"] = "Perdiste 10000"
                     #val_mesa = val_mesa + valor_entrada
@@ -393,9 +399,3 @@ try:
         Juego()
 except Exception:
     print("error")
-#Añadido se puede borrar si corne-sama lo desea, ya que es su codigo
-finally:
-    db.save()
-    print("Fin del programa")
-
-    
