@@ -7,6 +7,8 @@ import dbengine as db
 try:
     def Juego():
         try:
+            db.charge(200000)
+            db.load()
             puede = [False]
             resultados = [1]
             movimientos = [0]

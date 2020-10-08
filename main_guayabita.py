@@ -116,7 +116,6 @@ try:
                 db.load()
                 db.save()
                 texto_saldo_num["text"] = saldote
-                  
 
                 #val_mesa = val_mesa + valor_entrada
                 #txt_saldo_mesa["text"] = val_mesa 
@@ -152,7 +151,7 @@ try:
                     var_no_spam[0] = False
                     dado_1_boton['state'] = tk.DISABLED     
                     dado_2_boton['state'] = tk.NORMAL            
-                         
+                    
                 elif(ans == 5):
                     img_1["image"] = img_dado_5
                     var_no_spam[0] = False
@@ -390,11 +389,14 @@ try:
         otro = Label(marco_der,text="\n\n𝘾𝙤𝙣 𝙚𝙡 𝙗𝙤𝙩𝙤𝙣 𝙙𝙚 𝙖𝙗𝙖𝙟𝙤 𝙥𝙪𝙚𝙙𝙚𝙨 𝙧𝙚𝙞𝙣𝙞𝙘𝙞𝙖𝙧 𝙚𝙡 𝙟𝙪𝙚𝙜𝙤\n", font=estilo3).pack()
         
         #INSTRUCCIONES
-             
-   
- 
+    
+
+
         ventana.mainloop()
     if __name__ == "__main__":
         Juego()
 except Exception:
     print("error")
+finally:
+    db.save()
+    print("Fin del programa")
