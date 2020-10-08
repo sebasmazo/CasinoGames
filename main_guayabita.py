@@ -2,12 +2,12 @@ import tkinter as tk
 import tkinter.font as tkFont
 from tkinter import *
 import Juegos.Class_Guayabita as Guayaba
-import BasesDeDatos.dbengine as db
+import dbengine as db
 
 
 try:
     def Juego():
-
+        
         ventana = tk.Tk()
         ventana.title("Guayabita uwu")
         ventana.geometry("1280x720")
@@ -19,8 +19,7 @@ try:
         def GetSaldoUsuario(y):
                 #EN ESTA FUNCION VA LA COMUNICACION CON LA BASE DE DATOS PARA CONSEGUIR EL SALDO ACTUAL DEL USUARIO, ESTA FUNCION DEBE RETORNAR EL SALDO ACTUAL    
                 if(y==1):                                
-                   
-                   return db.actualmoney()
+                    return int(db.actualmoney())
             
         def GetValorMesa(x):
             if(x==1):
