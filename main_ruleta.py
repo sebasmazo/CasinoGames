@@ -5,6 +5,7 @@ import dbengine as db
 
 
 try:
+    
     def Juego():
         try:
             
@@ -14,19 +15,7 @@ try:
             window = Tk()
             window.title("CASINOFRESCO")
             window.geometry("1280x720")
-            #Recursos
-            try:
-                imagen_fichas = PhotoImage(file = "pngegg1.png")
-                imagen_ruleta = PhotoImage(file = "imageonline-co-transparentimage.png")    
-                imagen_marca = PhotoImage(file = "marca.png")
-                
-            except FileNotFoundError:
-                print("Imagen no encontrada")
-            fondo = Label(window, image = imagen_fichas).place(x=0,y=0)
-            ruleta = Label(window, image = imagen_ruleta).place(x = 840, y = 50)    #IMAGEN DE LA RULETA QUE ESTA EN DISPLAY DE LA APP
             
-            marca = Label(window, image = imagen_marca).place(x=540,y=600)
-            #////
             #Usuario
             usuario_actual = Label(window, text=" ")
             usuario_actual.pack()
@@ -104,13 +93,7 @@ try:
             print("En desarrollo")
         except InterruptedError:
             print("Error en el juego")
-    if __name__ == "__main__":
-        Juego()
-    else:
-        raise ConnectionRefusedError
-
-except ConnectionRefusedError:
-    print("Por favor inicie el juego como programa principal")
+    Juego()
 
 except Exception:
     print("Dinero insuficiente")

@@ -393,8 +393,7 @@ try:
 
 
         ventana.mainloop()
-    if __name__ == "__main__":
-        Juego()
+    
 except Exception:
     print("error")
 finally:
