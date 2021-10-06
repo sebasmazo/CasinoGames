@@ -6,6 +6,7 @@ import dbengine as db
 
 
 try:
+    
     def Juego():
         
         ventana = tk.Tk()
@@ -113,8 +114,8 @@ try:
             if(saldote >= 10000):
                 saldote = saldote - valor_entrada
                 db.addRecord(saldote)
-                db.load()
                 db.save()
+                db.load()
                 texto_saldo_num["text"] = saldote
 
                 #val_mesa = val_mesa + valor_entrada
@@ -127,8 +128,8 @@ try:
                     img_1["image"] = img_dado_1
                     saldote = saldote - valor_entrada
                     db.addRecord(saldote)
-                    db.load()
                     db.save()
+                    db.load()
                     texto_saldo_num["text"] = saldote
                     txt_mesa["text"] = "Perdiste 10000"
                     #val_mesa = val_mesa + valor_entrada
@@ -221,8 +222,8 @@ try:
                 if(ans_2 > v_dado_1):
                     saldito = saldito + 50000
                     db.addRecord(saldito)
-                    db.load()
                     db.save()
+                    db.load()
                     texto_saldo_num["text"] = saldito
                     txt_mesa["text"] = "GANASTE 40000"
 
@@ -242,8 +243,8 @@ try:
                 elif(ans_2 <= v_dado_1):
                     saldito = saldito - 80000
                     db.addRecord(saldito)
-                    db.load()
                     db.save()
+                    db.load()
                     texto_saldo_num["text"] = saldito
                     txt_mesa["text"] = "PERDISTE 80000"
 
@@ -265,8 +266,8 @@ try:
                 if(ans_2 > v_dado_1):
                     saldito = saldito + 30000
                     db.addRecord(saldito)
-                    db.load()
                     db.save()
+                    db.load()
                     texto_saldo_num["text"] = saldito
                     txt_mesa["text"] = "GANASTE 20000"
 
@@ -287,8 +288,8 @@ try:
 
                     saldito = saldito - 40000
                     db.addRecord(saldito)
-                    db.load()
                     db.save()
+                    db.load()
                     texto_saldo_num["text"] = saldito
                     txt_mesa["text"] = "PERDISTE 40000"
 
@@ -310,8 +311,8 @@ try:
                 if(ans_2 > v_dado_1):
                     saldito = saldito + 20000
                     db.addRecord(saldito)
-                    db.load()
                     db.save()
+                    db.load()
                     texto_saldo_num["text"] = saldito
                     txt_mesa["text"] = "GANASTE 10000"
 
@@ -332,8 +333,8 @@ try:
 
                     saldito = saldito - 20000
                     db.addRecord(saldito)
-                    db.load()
                     db.save()
+                    db.load()
                     texto_saldo_num["text"] = saldito
                     txt_mesa["text"] = "PERDISTE 20000"
 
